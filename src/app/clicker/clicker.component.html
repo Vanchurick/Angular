@@ -1,0 +1,83 @@
+<div class="form-container" *ngIf="visibleForm; else content">
+  <form action="POST" class="form">
+    <label for="input-name">Enter your name:</label>
+    <input type="text" [(ngModel)]="name" name="username" id="input-name" />
+    <button (click)="closeModal()" class="button">SUBMIT</button>
+  </form>
+</div>
+
+<ng-template #content>
+  <div class="container">
+    <div class="settings">
+      <div><button (click)="newUser()" class="button">New User</button></div>
+      <div class="timer-settings">
+        <form action="POST" class="form-settings">
+          <label>
+            <input
+              type="radio"
+              id="timer5"
+              name="timer"
+              value="5"
+              [(ngModel)]="timer"
+            />5</label
+          >
+
+          <label>
+            <input
+              type="radio"
+              id="timer10"
+              name="timer"
+              value="10"
+              [(ngModel)]="timer"
+            />10</label
+          >
+
+          <label>
+            <input
+              type="radio"
+              id="timer20"
+              name="timer"
+              value="20"
+              [(ngModel)]="timer"
+            />20</label
+          >
+        </form>
+      </div>
+    </div>
+
+    <div class="main">
+      <h1>Lets play, {{ name }}!</h1>
+      <p>Time: {{ time }}</p>
+
+      <div *ngIf="visibleStartButton; else clickButton">
+        <div class="button-container">
+          <button (click)="startTimer()" class="button main-button start">
+            Start
+          </button>
+        </div>
+      </div>
+
+      <ng-template #clickButton>
+        <div class="button-container">
+          <button
+            (click)="addClick()"
+            class="button main-button"
+            [disabled]="clickButtonDisabled"
+            [style]="backgroundColor"
+          >
+            Click
+          </button>
+        </div>
+      </ng-template>
+
+      <p>Clicks: {{ countClick }}</p>
+    </div>
+    <div class="results">
+      <p>Results:</p>
+      <app-result
+        *ngFor="let iterResult of results"
+        [result]="iterResult"
+      ></app-result>
+    </div>
+  </div>
+</ng-template>
