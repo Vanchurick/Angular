@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
-
+import { Component } from '@angular/core';
+import { UserService } from '../services/user/user.service';
+import { Router } from '@angular/router';
+import { ResultService } from '../services/result/result.service';
 
 export interface Result {
   time: number,
@@ -15,31 +17,15 @@ export interface Result {
 
 
 export class ClickerComponent {
-  name: string;
+
+  constructor(private userService: UserService, private resultService: ResultService, private router: Router) { }
+
+  name: string = this.userService.getUserName();
   timer: string = "10";
   countClick: number = 0;
-  time: number;
-  visibleForm: boolean = true;
-  results: Result[] = [];
+  time: number = 10;
   visibleStartButton: boolean = true;
-  clickButtonDisabled: boolean = false;
   backgroundColor: string = "background-color: #586;";
-
-
-
-  closeModal() {
-    this.visibleForm = false;
-  }
-
-  openModal() {
-    this.visibleForm = true;
-  }
-
-  newUser() {
-    this.openModal();
-    this.reset()
-    this.name = "";
-  }
 
   addClick() {
     this.countClick += 1;
@@ -59,18 +45,8 @@ export class ClickerComponent {
       if (this.time === 0) {
         clearInterval(timerID)
         this.addResult();
-        this.reset()
-        this.clickButtonDisabled = true;
-
-        setTimeout(() => {
-          this.visibleStartButton = true;
-          this.clickButtonDisabled = false;
-
-        }, 5000);
-
+        this.router.navigate(['result'])
       }
-
-
     }, 1000);
 
 
@@ -84,11 +60,7 @@ export class ClickerComponent {
       clicks: this.countClick,
     }
 
-    this.results.push(result);
+    this.resultService.addNewResult(result);
   }
 
-  reset() {
-    this.countClick = 0;
-    this.time = Number(this.timer);
-  }
 }

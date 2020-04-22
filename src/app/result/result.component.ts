@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Result } from '../clicker/clicker.component';
+import { ResultService } from '../services/result/result.service';
 
 @Component({
   selector: 'app-result',
@@ -7,7 +8,9 @@ import { Result } from '../clicker/clicker.component';
   styleUrls: ['./result.component.scss']
 })
 export class ResultComponent {
-  @Input() result: Result
 
+  constructor(private resultsService: ResultService) { }
+
+  results = this.resultsService.getResults()
 
 }
