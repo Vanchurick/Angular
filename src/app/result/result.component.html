@@ -1,4 +1,5 @@
-<div class="results">
+<div *ngIf="results.length; else noResults" class="results">
+  <app-navigation></app-navigation>
   <h1 class="results__title">Results:</h1>
   <ul class="results__list">
     <li *ngFor="let result of results" class="results__item">
@@ -10,3 +11,9 @@
     </li>
   </ul>
 </div>
+
+<ng-template #noResults>
+  <div class="results">
+    <h1 class="results__title">No results!</h1>
+  </div>
+</ng-template>
