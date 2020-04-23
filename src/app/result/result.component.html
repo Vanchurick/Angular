@@ -1,9 +1,12 @@
 <div class="results">
-  <ul *ngFor="let result of results">
-    <li>
-      <p>Time: {{ result.time }} sec</p>
-      <p>Name: {{ result.name }}</p>
-      <p>Result: {{ result.clicks }} clicks</p>
+  <h1 class="results__title">Results:</h1>
+  <ul class="results__list">
+    <li *ngFor="let result of results" class="results__item">
+      <p class="results__text"><span>Time:</span> {{ result.time }} sec</p>
+      <p class="results__text"><span>Name:</span> {{ result.name }}</p>
+      <p class="results__text">
+        <span>Result:</span> {{ result.clicks }} clicks
+      </p>
     </li>
   </ul>
 </div>

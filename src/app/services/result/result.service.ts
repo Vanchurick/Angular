@@ -14,6 +14,11 @@ export class ResultService {
 
   addNewResult(result) {
     this.results.push(result);
+
+    this.results.sort((a, b) => {
+      return b.clicks - a.clicks;
+    });
+
     localStorage.setItem("results", JSON.stringify(this.results));
   }
 
