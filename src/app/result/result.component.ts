@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Result } from '../clicker/clicker.component';
 import { ResultService } from '../services/result/result.service';
+import ResultInterface from '../interfaces/result';
+
+
 
 @Component({
   selector: 'app-result',
@@ -11,6 +14,6 @@ export class ResultComponent {
 
   constructor(private resultsService: ResultService) { }
 
-  results = this.resultsService.getResults()
+  results: ResultInterface[] = this.resultsService.getResults()
 
 }

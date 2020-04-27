@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import ResultInterface from '../../interfaces/result'
 
 @Injectable({
   providedIn: 'root'
@@ -6,13 +7,13 @@ import { Injectable } from '@angular/core';
 
 export class ResultService {
 
-  results = JSON.parse(localStorage.getItem("results")) || [];
+  results: ResultInterface[] = JSON.parse(localStorage.getItem("results")) || [];
 
   getResults() {
     return this.results;
   }
 
-  addNewResult(result) {
+  addNewResult(result: ResultInterface) {
     this.results.push(result);
 
     this.results.sort((a, b) => {

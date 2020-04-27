@@ -7,11 +7,11 @@ import { Injectable } from '@angular/core';
 export class UserService {
   userName: string = localStorage.getItem('userName') || "Fastest Clicker in The World";
 
-  getUserName() {
+  getUserName(): string {
     return this.userName;
   }
 
-  changeUserName(newName) {
+  changeUserName(newName: string) {
     this.userName = newName;
     localStorage.setItem('userName', this.userName);
   }
