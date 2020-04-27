@@ -1,9 +1,9 @@
 <div class="container">
   <div class="main">
     <h1>Lets play, {{ name }}!</h1>
-    <p>Time: {{ time }}</p>
+    <p>Time: {{ gameTime }}</p>
 
-    <div *ngIf="visibleStartButton; else clickButton">
+    <div *ngIf="isVisibleStartButton; else clickButton">
       <div class="button-container">
         <button (click)="startTimer()" class="button main-button start">
           Start

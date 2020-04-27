@@ -21,10 +21,9 @@ export class ClickerComponent {
   constructor(private userService: UserService, private resultService: ResultService, private router: Router) { }
 
   name: string = this.userService.getUserName();
-  timer: string = "10";
   countClick: number = 0;
-  time: number = 10;
-  visibleStartButton: boolean = true;
+  gameTime: number = 10;
+  isVisibleStartButton: boolean = true;
   backgroundColor: string = "background-color: #586;";
 
   addClick() {
@@ -34,28 +33,25 @@ export class ClickerComponent {
 
 
   startTimer() {
-    this.visibleStartButton = false;
-    let time = Number(this.timer);
-    this.time = time;
+
+    this.isVisibleStartButton = false;
 
     let timerID = setInterval(() => {
-      time -= 1
-      this.time = time;
+      this.gameTime--
 
-      if (this.time === 0) {
+      if (this.gameTime === 0) {
         clearInterval(timerID)
+        this.gameTime = 10;
         this.addResult();
-        this.router.navigate(['result'])
+        this.router.navigate(['result']);
       }
     }, 1000);
-
-
 
   }
 
   addResult() {
     const result = {
-      time: Number(this.timer),
+      time: this.gameTime,
       name: this.name,
       clicks: this.countClick,
     }

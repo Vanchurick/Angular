@@ -13,7 +13,7 @@ export class LoginComponent {
   userName: string = this.userService.getUserName();
 
 
-  checkUserName(name) {
+  checkUserName(name: string): boolean {
     const regExpName = /[a-zA-Z][a-zA-Z0-9-_]{3,32}/gi;
     const isNameCorrect = regExpName.test(name);
 
@@ -27,15 +27,12 @@ export class LoginComponent {
 
 
 
-  saveUserName() {
+  login() {
     if (!this.checkUserName(this.userName)) {
       return;
     };
 
     this.userService.changeUserName(this.userName)
-    this.router.navigate(['play'])
+    this.router.navigate(['clicker'])
   }
-
-
-  d
 }

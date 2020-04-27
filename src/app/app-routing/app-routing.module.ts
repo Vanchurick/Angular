@@ -16,7 +16,7 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
-    path: "play",
+    path: "clicker",
     component: ClickerComponent
   }, {
     path: "result",
